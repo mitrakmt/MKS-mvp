@@ -1,18 +1,17 @@
-// Retrieve
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/alfredDb');
-//
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//   console.log("We're connected!");
-// })
-//
-// var userSchema = mongoose.Schema({
-//   username: { type: String, required: true, unique: true },
-//   password: { type: String, required: true}
-// });
-//
-// var User = mongoose.model('User', userSchema);
-//
-// module.exports = User;
+var mongoClient = require('mongodb').MongoClient;
+var db = mongoose.connection;
+var url = 'mongodb://localhost/alfredDb';
+
+db.on('error', console.error);
+db.once('open', function() {
+  var userSchema = new mongoose.Schema({
+    name: String,
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+  });
+
+  var User = mongoose.model('User', userSchema);
+});
+
+mongoose.connect('mongodb://localhost/alfredDb');

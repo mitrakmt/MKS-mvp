@@ -11,6 +11,7 @@ usersController.loginUser = (req, res) => {
 };
 
 usersController.signupUser = (req, res) => {
+  console.log("HI");
   usersModel.postUsers((results) => {
     res.json({
       results: results
